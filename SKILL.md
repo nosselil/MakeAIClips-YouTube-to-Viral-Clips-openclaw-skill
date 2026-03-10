@@ -16,7 +16,7 @@ metadata:
 Paste a YouTube link → get up to 10 vertical clips with word-by-word captions and hook titles in ~60 seconds.
 
 **Website:** https://makeaiclips.live
-**API Base:** `https://api-production-50da.up.railway.app`
+**API Base:** `https://makeaiclips.live`
 
 ## Setup
 
@@ -60,7 +60,7 @@ All authenticated requests require header: `X-API-Key: <MAKEAICLIPS_API_KEY>`
 
 ### Generate Clips (YouTube link)
 
-`POST /api/clips`
+`POST /api/v1/clips`
 
 ```json
 {
@@ -90,13 +90,13 @@ Returns: `{"job_id": "...", "status": "pending"}`
 
 ### Generate Clips (File upload)
 
-`POST /api/clips/upload` (multipart form)
+`POST /api/v1/clips/upload` (multipart form)
 
 Fields: `file` (video file), `caption_style`, `title_style`, `title_duration`, `clip_duration`, `num_clips`, `quality`
 
 ### Poll Job Status
 
-`GET /api/clips/{job_id}`
+`GET /api/v1/clips/{job_id}`
 
 Poll every 5 seconds until `status` is `complete` or `failed`.
 
@@ -122,13 +122,13 @@ Complete response includes `clips` array:
 
 ### Download Clip
 
-`GET /api/clips/{job_id}/download/{clip_index}`
+`GET /api/v1/clips/{job_id}/download/{clip_index}`
 
 Returns MP4 file. Save with `-o clip_N.mp4`.
 
 ### Re-render with Different Hook
 
-`POST /api/clips/{job_id}/rerender/{clip_index}`
+`POST /api/v1/clips/{job_id}/rerender/{clip_index}`
 
 Body: `{"hook_title": "New Title Here"}`
 
@@ -138,11 +138,11 @@ Body: `{"hook_title": "New Title Here"}`
 
 ## Workflow
 
-1. Submit job → `POST /api/clips` with `youtube_url` and preferences
-2. Poll → `GET /api/clips/{job_id}` every 5s, show progress to user
+1. Submit job → `POST /api/v1/clips` with `youtube_url` and preferences
+2. Poll → `GET /api/v1/clips/{job_id}` every 5s, show progress to user
 3. Present results with hook titles, durations, transcript previews
 4. Ask which clips to download (all or specific)
-5. Download → `GET /api/clips/{job_id}/download/{clip_index}` and save to workspace
+5. Download → `GET /api/v1/clips/{job_id}/download/{clip_index}` and save to workspace
 
 ## Caption Styles
 
@@ -218,16 +218,16 @@ On 429, show:
 
 ```bash
 # Submit job
-curl -X POST "https://api-production-50da.up.railway.app/api/clips" \
+curl -X POST "https://makeaiclips.live/api/v1/clips" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: mak_live_YOUR_KEY" \
   -d '{"youtube_url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","num_clips":3,"quality":"high","caption_style":"karaoke-yellow"}'
 
 # Poll status
-curl "https://api-production-50da.up.railway.app/api/clips/JOB_ID" \
+curl "https://makeaiclips.live/api/v1/clips/JOB_ID" \
   -H "X-API-Key: mak_live_YOUR_KEY"
 
 # Download clip
-curl -o clip_1.mp4 "https://api-production-50da.up.railway.app/api/clips/JOB_ID/download/1" \
+curl -o clip_1.mp4 "https://makeaiclips.live/api/v1/clips/JOB_ID/download/1" \
   -H "X-API-Key: mak_live_YOUR_KEY"
 ```

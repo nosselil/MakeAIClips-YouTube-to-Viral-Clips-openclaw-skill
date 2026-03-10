@@ -88,7 +88,7 @@ The agent will:
 
 ```bash
 # Submit
-curl -X POST "https://api-production-50da.up.railway.app/api/clips" \
+curl -X POST "https://makeaiclips.live/api/clips" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: mak_live_YOUR_KEY" \
   -d '{
@@ -99,11 +99,11 @@ curl -X POST "https://api-production-50da.up.railway.app/api/clips" \
   }'
 
 # Poll
-curl "https://api-production-50da.up.railway.app/api/clips/JOB_ID" \
+curl "https://makeaiclips.live/api/clips/JOB_ID" \
   -H "X-API-Key: mak_live_YOUR_KEY"
 
 # Download
-curl -o clip.mp4 "https://api-production-50da.up.railway.app/api/clips/JOB_ID/download/1" \
+curl -o clip.mp4 "https://makeaiclips.live/api/clips/JOB_ID/download/1" \
   -H "X-API-Key: mak_live_YOUR_KEY"
 ```
 
@@ -128,7 +128,7 @@ Sign up: [makeaiclips.live](https://makeaiclips.live/sign-up)
 - **Web App:** [makeaiclips.live](https://makeaiclips.live)
 - **Dashboard:** [makeaiclips.live/dashboard](https://makeaiclips.live/dashboard)
 - **ClawHub:** [clawhub.ai/nosselil/captions-and-clips-from-youtube-link](https://clawhub.ai/nosselil/captions-and-clips-from-youtube-link)
-- **API Docs:** [makeaiclips.live/docs](https://api-production-50da.up.railway.app/docs)
+- **API Docs:** [makeaiclips.live/docs](https://makeaiclips.live/docs)
 
 ## License
 
