@@ -56,7 +56,7 @@ Plans:
 
 ## API Endpoints
 
-All authenticated requests require header: `X-API-Key: <MAKEAICLIPS_API_KEY>`
+All authenticated requests require header: `Authorization: Bearer <MAKEAICLIPS_API_KEY>`
 
 ### Generate Clips (YouTube link)
 
@@ -220,14 +220,14 @@ On 429, show:
 # Submit job
 curl -X POST "https://makeaiclips.live/api/v1/clips" \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: mak_live_YOUR_KEY" \
+  -H "Authorization: Bearer mak_live_YOUR_KEY" \
   -d '{"youtube_url":"https://www.youtube.com/watch?v=dQw4w9WgXcQ","num_clips":3,"quality":"high","caption_style":"karaoke-yellow"}'
 
 # Poll status
 curl "https://makeaiclips.live/api/v1/clips/JOB_ID" \
-  -H "X-API-Key: mak_live_YOUR_KEY"
+  -H "Authorization: Bearer mak_live_YOUR_KEY"
 
 # Download clip
 curl -o clip_1.mp4 "https://makeaiclips.live/api/v1/clips/JOB_ID/download/1" \
-  -H "X-API-Key: mak_live_YOUR_KEY"
+  -H "Authorization: Bearer mak_live_YOUR_KEY"
 ```
